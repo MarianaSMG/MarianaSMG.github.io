@@ -174,7 +174,93 @@
 <img src="/img/cnc/setupsolido.png" alt="Imagen Simple"></li>
 </ul>
 <h4 id="paso-4">Paso 4:</h4>
+<p>En este paso vamos a comenzar a definir las trayectorias de los 3 cortes que le pediremos a la CNC que haga para las patas. Se recomienda mantener apagada la plancha durante esta parte para poder seleccionar bien los bordes.</p>
+<p>Para los calados interiores seguiremos los siguientes pasos:</p>
+<ul>
+<li>Con el comando <strong>2D Contour</strong>, seleccionamos el borde inferior de los calados internos de las patas.</li>
+<li>El programa nos va a solicitar la fresa que utilizaremos, la cual en el caso de este ejercicio, será una de tip <strong>Flat End Mill de 6mm</strong> de diámetro.</li>
+</ul>
+<p>Hay que tomar en cuenta que la profundidad de corte por pasada no puede superar el 50% del diámetro de la fresadora, ya que sino esto resulta en un corte menos prolijo y una disminución en la vida útil de la fresadora. Para evitar esto, configurar el corte para que en vez de hacerlo en una sola pasada, haga pasadas de solo 3mm de profundidad, equivalente al 50% del diámetro de la fresa a utilizar.</p>
+<ul>
+<li>En capa del 2D Contour creado para el calado y apretamos <strong>Edit</strong> para volver a sus configuraciones.</li>
+<li>Vamos a ir a la carpeta <strong>Passes</strong> y bajamos hasta la parte de <strong>Multiple Depths</strong>, donde aplicaremos 3mm de <strong>Maximum Roughiness</strong>.</li>
+</ul>
+<p>Al terminar el ultimo paso, podemos ver como ahora hay multiples lineas al rededor del calado que representan cada capa que irá cortando la CNC.</p>
+<p><img src="/img/cnc/6.png" alt="Imagen Simple"></p>
+<p><img src="/img/cnc/7.png" alt="Imagen Simple"></p>
+<div>
+    <video 
+    width="100%" 
+    height="450" 
+    autoplay muted loop controls preload>
+    <source src="/img/videocalado.mp4"  type="video/mp4">
+    </video>
+</div>
+<p>Para los calados superiores el proceso es parecido pero debemos comenzar el proceso con un comando diferente.</p>
+<ul>
+<li>Desde la carpeta de comandos 2D, seleccionamos <strong>2D Pocket</strong> y seleccionamos ambos calados.</li>
+<li>Los siguientes pasos son iguales, solo debemos modificar la profundidad de corte a <strong>3mm</strong>.</li>
+</ul>
+<p><img src="/img/cnc/8.png" alt="Imagen Simple"></p>
+<p><img src="/img/cnc/9.png" alt="Imagen Simple"></p>
+<div>
+    <video 
+    width="100%" 
+    height="450" 
+    autoplay muted loop controls preload>
+    <source src="/img/videopocket.mp4"  type="video/mp4">
+    </video>
+</div>
+<p>Por último, para el corte final del perimetro de las patas los pasos serán iguales a los del calado interior pero tendremos que agregar <strong>Tabs</strong>, los cuales evitaran que al estar finalizando el corte, la máquina vibre y se vea perjudicado el acabo de la pieza o incluso que esta se rompa.</p>
+<ul>
+<li>Para aplicar los <strong>Tabs</strong>, en la pestaña de opciones del <strong>2D Contour</strong> correspondiente al perimetro, iremos a la carpeta de <strong>Geometry</strong></li>
+<li>Encendemos la opcion de <strong>Tabs</strong> y ponemos un <strong>Tab Width</strong> de <strong>6mm</strong>, un <strong>Tab Height</strong> de <strong>3mm</strong> y una <strong>Tab distance</strong> de <strong>350mm</strong>.</li>
+</ul>
+<p><img src="/img/cnc/11.png" alt="Imagen Simple">
+Como podemos ver, en la ultima capa de la trayectoria, hay unos pequeños saltos, estos son los Tabs que acabamos de generar.</p>
+<p><img src="/img/cnc/13.png" alt="Imagen Simple">
+En esta imagen se ilustra desde una simulación como se vería el corte con los Tabs incluidos.</p>
 <h3 id="tutorial-asiento-silla-fresia">Tutorial Asiento Silla Fresia</h3>
+<h4 id="paso-1">Paso 1:</h4>
+<p>Preparamos nuestra plancha de terciado con las mismas dimensiones de antes pero con la diferencia de que se aplicara una <strong>extrusión de 9mm</strong>.
+<img src="/img/cnc/14.png" alt="Imagen Simple"></p>
+<h4 id="paso-2">Paso 2:</h4>
+<p>Para esta etápa, seguiremos los mismos pasos que para el paso 3 del tutorial anterior.</p>
+<ul>
+<li>Cambiamos nuestro modo de trabajo a <strong>Manufacture</strong> y hacemos un nuevo <strong>Set-up</strong></li>
+<li>Seleccionamos la máquina <strong>Autodesk, Generic 3-axis</strong></li>
+<li>Elegimos la orientación <strong>Z axis/plane &amp; X axis</strong></li>
+<li>En <strong>Axis Z seleccionamos la plancha</strong>, definiendo nuestro eje Z</li>
+<li>En <strong>Axis X seleccionamos el borde superior de la plancha</strong> para definir nuestro eje X</li>
+<li>En <strong>Origin</strong> seleccionamos la opción <strong>Stock Box Point</strong> y seleccionamos como Box Point la esquina superior que contiene el eje X.</li>
+<li>Vamos a la pestaña de <strong>Stock</strong> en la misma pestaña de opciones y seleccionamos la opción <strong>From Solid</strong> y seleccionamos la plancha.</li>
+<li>Por último, volvemos a la pestaña inicial y en <strong>Model</strong> apretamos <strong>Nothing</strong> y seleccionamos las piezas que posicionamos en la plancha</li>
+</ul>
+<p><img src="/img/cnc/15.png" alt="Imagen Simple"></p>
+<h4 id="paso-3">Paso 3:</h4>
+<p>Ocupamos el comando <strong>2D Contour</strong>, seleccionamos el borde inferior del asiento y seguimos los mismos pasos anteriores, es importante no olvidar modificar la profundidad de corte.</p>
+<div>
+    <video 
+    width="100%" 
+    height="450" 
+    autoplay muted loop controls preload>
+    <source src="/img/videoasiento1.mp4"  type="video/mp4">
+    </video>
+</div>
+<h4 id="paso-4-1">Paso 4:</h4>
+<p>Para que el asiento logre la curva necesaria, debemos generar una seria de cortes.</p>
+<ul>
+<li>Desde la carpeta de comandos 2D, seleccionamos <strong>2D Trace</strong> y seleccionamos una a una las lineas de la pieza</li>
+<li>En las configuraciones, iremos a la carpeta <strong>Passes</strong> y activamos <strong>Stock to leave</strong> y colocamos un <strong>Radial Stock de 4,5 mm</strong></li>
+</ul>
+<div>
+    <video 
+    width="100%" 
+    height="450" 
+    autoplay muted loop controls preload>
+    <source src="/img/videoasiento2.mp4"  type="video/mp4">
+    </video>
+</div>
 <h3 id="iframe-silla-fresia">Iframe Silla Fresia</h3>
 <div>
     <iframe 
@@ -188,7 +274,8 @@
     </iframe>    
 </div>
 <h3 id="galería">Galería</h3>
-<p>
+<p>Imágenes del proceso real:
+
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 
 <div class="gallery caption-position-bottom caption-effect-slide hover-effect-zoom hover-transition" itemscope itemtype="http://schema.org/ImageGallery">
